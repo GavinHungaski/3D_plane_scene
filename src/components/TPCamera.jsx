@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { PerspectiveCamera } from '@react-three/drei'
+import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
 
 const TPCamera = ({ children }) => {
   const plane_camera_ref = useRef()
@@ -73,6 +73,7 @@ const TPCamera = ({ children }) => {
         args={[45, 1.2, 1, 1000]}
       />
       {children}
+      <OrbitControls enablePan={false} />
     </group>
   )
 }

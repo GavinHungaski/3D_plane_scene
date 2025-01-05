@@ -19,7 +19,13 @@ const Plane = () => {
     }, [])
 
     return (
-        <mesh ref={mesh} scale={[0.05, 0.05, 0.05]} position={[0, 2, 0]} castShadow receiveShadow>
+        <mesh 
+            ref={mesh}
+            scale={[0.05, 0.05, 0.05]}
+            position={[0, 2, 0]}
+            castShadow
+            receiveShadow
+        >
             <primitive object={plane}/>
         </mesh>
     )

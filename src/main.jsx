@@ -1,7 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
 import { DirLight, TPCamera, SkyBox, Plane } from './components'
-import { OrbitControls } from '@react-three/drei'
 import './app.css'
 
 
@@ -18,8 +17,7 @@ function App() {
       <TPCamera>
         <Plane />
       </TPCamera>
-
-      <OrbitControls />
+      
     </Canvas>
   )
 }
