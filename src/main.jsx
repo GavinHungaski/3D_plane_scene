@@ -11,8 +11,8 @@ function App() {
       <SkyBox />
       <ambientLight intensity={1} />
       
-      {/* <DirLight />
-      <gridHelper args={[100, 20, 0xff0000, 'teal']} /> */}
+      <DirLight />
+      {/* <gridHelper args={[100, 20, 0xff0000, 'teal']} /> */}
 
       <Plane />
 
