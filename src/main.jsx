@@ -12,7 +12,7 @@ function App() {
       <ambientLight intensity={1} />
       <DirLight />
 
-      <gridHelper args={[100, 20, 0xff0000, 'teal']} />
+      <gridHelper args={[150, 20, 0xff0000, 'teal']} />
 
       <TPCamera>
         <Plane />
