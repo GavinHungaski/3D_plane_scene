@@ -18,10 +18,10 @@ function App() {
       <TPCamera>
         <group>
           <Plane />
-          <Trail width={100} length={4} color="red">
+          <Trail width={100} length={2} color="red">
             <mesh position={[-7, 11.5, 20]} />
           </Trail>
-          <Trail width={100} length={4} color="red">
+          <Trail width={100} length={2} color="red">
             <mesh position={[7, 11.5, 20]} />
           </Trail>
         </group>

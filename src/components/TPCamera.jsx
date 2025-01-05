@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
 
 const TPCamera = ({ children }) => {
-  const speed_factor = 0.5
+  const speed_factor = 1
   const plane_camera_ref = useRef()
 
   const [moveRight, setMoveRight] = useState(false)
