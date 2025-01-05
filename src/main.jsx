@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
-import { DirLight, SkyBox, Plane } from './components'
+import { DirLight, TPCamera, SkyBox, Plane } from './components'
 import { OrbitControls } from '@react-three/drei'
 import './app.css'
 
@@ -12,9 +12,11 @@ function App() {
       <ambientLight intensity={1} />
       
       <DirLight />
-      {/* <gridHelper args={[100, 20, 0xff0000, 'teal']} /> */}
+      <gridHelper args={[100, 20, 0xff0000, 'teal']} />
 
-      <Plane />
+      <TPCamera>
+        <Plane />
+      </TPCamera>
 
       <OrbitControls />
     </Canvas>
