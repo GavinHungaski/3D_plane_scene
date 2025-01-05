@@ -6,7 +6,7 @@ import { useHelper } from '@react-three/drei'
 const DirLight = () => {
     const dirLightRef = useRef(DirectionalLight)
 
-    // useHelper(dirLightRef, DirectionalLightHelper, 0.5, 'red')
+    useHelper(dirLightRef, DirectionalLightHelper, 0.5, 'red')
 
     useLayoutEffect(() => {
         if (dirLightRef.current) {
