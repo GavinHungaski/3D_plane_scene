@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
 
 const TPCamera = ({ children }) => {
+  const speed_factor = 0.5
   const plane_camera_ref = useRef()
 
   const [moveRight, setMoveRight] = useState(false)
@@ -59,8 +60,8 @@ const TPCamera = ({ children }) => {
   }, [])
 
   useFrame((state, delta) => {
-    plane_camera_ref.current.position.x += moveRight ? 0.2 : moveLeft ? -0.2 : 0
-    plane_camera_ref.current.position.z += moveForward ? -0.2 : moveBackward ? 0.2 : 0
+    plane_camera_ref.current.position.x += moveRight ? speed_factor : moveLeft ? -speed_factor : 0
+    plane_camera_ref.current.position.z += moveForward ? -speed_factor : moveBackward ? speed_factor : 0
     state.camera.lookAt(plane_camera_ref.current.position)
     state.camera.updateProjectionMatrix()
   })
