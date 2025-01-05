@@ -13,16 +13,16 @@ const TPCamera = ({ children }) => {
   useEffect(() => {
     const handleKeyDown = (event) => {
       switch (event.key) {
-        case 'ArrowRight':
+        case 'd':
           setMoveRight(true)
           break
-        case 'ArrowLeft':
+        case 'a':
           setMoveLeft(true)
           break
-        case 'ArrowUp':
+        case 'w':
           setMoveForward(true)
           break
-        case 'ArrowDown':
+        case 's':
           setMoveBackward(true)
           break
         default:
@@ -32,16 +32,16 @@ const TPCamera = ({ children }) => {
 
     const handleKeyUp = (event) => {
       switch (event.key) {
-        case 'ArrowRight':
+        case 'd':
           setMoveRight(false)
           break
-        case 'ArrowLeft':
+        case 'a':
           setMoveLeft(false)
           break
-        case 'ArrowUp':
+        case 'w':
           setMoveForward(false)
           break
-        case 'ArrowDown':
+        case 's':
           setMoveBackward(false)
           break
         default:
@@ -69,7 +69,7 @@ const TPCamera = ({ children }) => {
     <group ref={plane_camera_ref}>
       <PerspectiveCamera
         makeDefault
-        position={[25, 22, 25]}
+        position={[25, 40, 25]}
         args={[45, 1.2, 1, 1000]}
       />
       {children}
