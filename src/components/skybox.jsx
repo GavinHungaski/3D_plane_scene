@@ -9,12 +9,12 @@ const SkyBox = () => {
   useEffect(() => {
     const loader = new CubeTextureLoader();
     loader.load([
-      '/public/skybox/posx.png',
-      '/public/skybox/negx.png',
-      '/public/skybox/posy.png',
-      '/public/skybox/negy.png',
-      '/public/skybox/posz.png',
-      '/public/skybox/negz.png',
+      '/skybox/posx.png',
+      '/skybox/negx.png',
+      '/skybox/posy.png',
+      '/skybox/negy.png',
+      '/skybox/posz.png',
+      '/skybox/negz.png',
     ], (loadedTexture) => {
       setTexture(loadedTexture);
     });

@@ -1,6 +1,2 @@
-export { default as Box } from './box'
 export { default as DirLight } from './dirLight'
-export { default as ChessSet } from './chess/chess_set'
-export { default as ChessBoard } from './chess/board'
-export { default as WhitePawn } from './chess/pawn_white'
 export { default as SkyBox } from './skybox'
