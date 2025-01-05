@@ -10,7 +10,7 @@ const DirLight = () => {
 
     useLayoutEffect(() => {
         if (dirLightRef.current) {
-            dirLightRef.current.position.y += 5
+            dirLightRef.current.position.y += 30
         }
     }, [])
 

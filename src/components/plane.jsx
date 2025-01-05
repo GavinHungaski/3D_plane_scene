@@ -14,11 +14,12 @@ const Plane = () => {
     })
 
     useLayoutEffect(() => {
-        mesh.current.rotation.y = 0.1
+        mesh.current.rotation.x = -Math.PI / 2
+        mesh.current.rotation.z = 0
     }, [])
 
     return (
-        <mesh ref={mesh} scale={[0.01, 0.01, 0.01]}>
+        <mesh ref={mesh} scale={[0.05, 0.05, 0.05]}>
             <primitive object={plane}/>
         </mesh>
     )
