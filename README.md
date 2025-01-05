@@ -1,4 +1,3 @@
-<img src="public/readme-airplane.jpg"></img>
-
 # 3D Plane Scene
-An interactive plane scene built in React Three Fiber with Vite
+<img src="public/readme-airplane.jpg"></img>
+An interactive plane scene built in React Three Fiber with Vite for fast testing deployment
