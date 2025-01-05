@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
-import { DirLight, TPCamera, SkyBox, Plane, Trail } from './components'
+import { Trail } from '@react-three/drei'
+import { DirLight, TPCamera, SkyBox, Plane } from './components'
 import './app.css'
 
 
@@ -10,16 +11,22 @@ function App() {
       <SkyBox />
 
       <ambientLight intensity={1} />
-      {/* <DirLight /> */}
+      <DirLight />
 
-      {/* <gridHelper args={[150, 20, 0xff0000, 'teal']} /> */}
+      <gridHelper args={[150, 20, 0xff0000, 'teal']} />
 
       <TPCamera>
-        <Plane />
+        <group>
+          <Plane />
+          <Trail width={100} length={4} color="red">
+            <mesh position={[-7, 11.5, 20]} />
+          </Trail>
+          <Trail width={100} length={4} color="red">
+            <mesh position={[7, 11.5, 20]} />
+          </Trail>
+        </group>
       </TPCamera>
 
-      <Trail />
-      
     </Canvas>
   )
 }
