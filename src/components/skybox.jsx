@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useThree } from '@react-three/fiber';
-import { CubeTextureLoader } from 'three';
+import { useEffect, useState } from 'react'
+import { useThree } from '@react-three/fiber'
+import { CubeTextureLoader } from 'three'
 
 const SkyBox = () => {
-  const { scene } = useThree();
-  const [texture, setTexture] = useState(null);
+  const { scene } = useThree()
+  const [texture, setTexture] = useState(null)
 
   useEffect(() => {
-    const loader = new CubeTextureLoader();
+    const loader = new CubeTextureLoader()
     loader.load([
       '/skybox/posx.png',
       '/skybox/negx.png',
@@ -16,17 +16,17 @@ const SkyBox = () => {
       '/skybox/posz.png',
       '/skybox/negz.png',
     ], (loadedTexture) => {
-      setTexture(loadedTexture);
-    });
-  }, []);
+      setTexture(loadedTexture)
+    })
+  }, [])
 
   useEffect(() => {
     if (texture) {
-      scene.background = texture;
+      scene.background = texture
     }
-  }, [scene, texture]);
+  }, [scene, texture])
 
-  return null;
+  return null
 };
 
-export default SkyBox;
+export default SkyBox
