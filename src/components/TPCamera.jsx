@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
+import * as THREE from 'three'
 
 const TPCamera = ({ children }) => {
   const speed_factor = 1
@@ -60,8 +61,24 @@ const TPCamera = ({ children }) => {
   }, [])
 
   useFrame((state, delta) => {
-    plane_camera_ref.current.position.x += moveRight ? speed_factor : moveLeft ? -speed_factor : 0
-    plane_camera_ref.current.position.z += moveForward ? -speed_factor : moveBackward ? speed_factor : 0
+    const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(plane_camera_ref.current.quaternion)
+    const right = new THREE.Vector3(1, 0, 0).applyQuaternion(plane_camera_ref.current.quaternion)
+    const up = new THREE.Vector3(0, 1, 0).applyQuaternion(plane_camera_ref.current.quaternion)
+
+    plane_camera_ref.current.position.addScaledVector(forward, moveForward ? speed_factor * delta : moveBackward ? -speed_factor * delta : 0.5)
+
+    plane_camera_ref.current.position.addScaledVector(right, moveRight ? speed_factor * delta : moveLeft ? -speed_factor * delta : 0)
+
+    if (moveForward || moveBackward) {
+      const pitch = new THREE.Quaternion().setFromAxisAngle(right, moveForward ? speed_factor * delta : moveBackward ? -speed_factor * delta : 0)
+      plane_camera_ref.current.quaternion.multiplyQuaternions(pitch, plane_camera_ref.current.quaternion)
+    }
+
+    if (moveRight || moveLeft) {
+      const yaw = new THREE.Quaternion().setFromAxisAngle(up, moveRight ? speed_factor * delta : moveLeft ? -speed_factor * delta : 0)
+      plane_camera_ref.current.quaternion.multiplyQuaternions(yaw, plane_camera_ref.current.quaternion)
+    }
+
     state.camera.lookAt(plane_camera_ref.current.position)
     state.camera.updateProjectionMatrix()
   })
