@@ -4,7 +4,8 @@ import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 
 const TPCamera = ({ children }) => {
-  const speed_factor = 1
+  const turn_speed = 1
+  const  move_speed = 1
   const plane_camera_ref = useRef()
 
   const [moveRight, setMoveRight] = useState(false)
@@ -65,17 +66,17 @@ const TPCamera = ({ children }) => {
     const right = new THREE.Vector3(1, 0, 0).applyQuaternion(plane_camera_ref.current.quaternion)
     const up = new THREE.Vector3(0, 1, 0).applyQuaternion(plane_camera_ref.current.quaternion)
 
-    plane_camera_ref.current.position.addScaledVector(forward, moveForward ? speed_factor * delta : moveBackward ? -speed_factor * delta : 0.5)
+    plane_camera_ref.current.position.addScaledVector(forward, moveForward ? turn_speed * delta : moveBackward ? -turn_speed * delta : move_speed)
 
-    plane_camera_ref.current.position.addScaledVector(right, moveRight ? speed_factor * delta : moveLeft ? -speed_factor * delta : 0)
+    plane_camera_ref.current.position.addScaledVector(right, moveRight ? turn_speed * delta : moveLeft ? -turn_speed * delta : 0)
 
     if (moveForward || moveBackward) {
-      const pitch = new THREE.Quaternion().setFromAxisAngle(right, moveForward ? speed_factor * delta : moveBackward ? -speed_factor * delta : 0)
+      const pitch = new THREE.Quaternion().setFromAxisAngle(right, moveForward ? turn_speed * delta : moveBackward ? -turn_speed * delta : 0)
       plane_camera_ref.current.quaternion.multiplyQuaternions(pitch, plane_camera_ref.current.quaternion)
     }
 
     if (moveRight || moveLeft) {
-      const yaw = new THREE.Quaternion().setFromAxisAngle(up, moveRight ? speed_factor * delta : moveLeft ? -speed_factor * delta : 0)
+      const yaw = new THREE.Quaternion().setFromAxisAngle(up, moveRight ? -turn_speed * delta : moveLeft ? turn_speed * delta : 0)
       plane_camera_ref.current.quaternion.multiplyQuaternions(yaw, plane_camera_ref.current.quaternion)
     }
 
