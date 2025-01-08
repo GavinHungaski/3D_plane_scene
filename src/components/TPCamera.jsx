@@ -86,8 +86,8 @@ const TPCamera = ({ children }) => {
     <group ref={plane_camera_ref}>
       <PerspectiveCamera
         makeDefault
-        position={[25, 40, 25]}
-        args={[45, 1.2, 1, 1000]}
+        position={[0, 40, 90]}
+        args={[50, 1.2, 1, 1000]}
       />
       {children}
       <OrbitControls enablePan={false} />
