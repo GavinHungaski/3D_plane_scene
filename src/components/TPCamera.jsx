@@ -77,7 +77,7 @@ const TPCamera = ({ children }) => {
     }
 
     if (moveRight || moveLeft) {
-      const roll = new THREE.Quaternion().setFromAxisAngle(forward, moveRight ? turn_speed * delta : moveLeft ? -turn_speed * delta : 0)
+      const roll = new THREE.Quaternion().setFromAxisAngle(forward, moveRight ? (turn_speed/2) * delta : moveLeft ? -(turn_speed/2) * delta : 0)
       plane_camera_ref.current.quaternion.multiplyQuaternions(roll, plane_camera_ref.current.quaternion)
     }
   
