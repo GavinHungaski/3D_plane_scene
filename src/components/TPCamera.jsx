@@ -5,7 +5,7 @@ import * as THREE from 'three'
 
 const TPCamera = ({ children }) => {
   const turn_speed = 1
-  const move_speed = 0
+  const move_speed = 2
   const plane_camera_ref = useRef()
 
   const [moveRight, setMoveRight] = useState(false)
