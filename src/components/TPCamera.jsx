@@ -7,6 +7,7 @@ const TPCamera = ({ children }) => {
   const turn_speed = 1
   const move_speed = 2
   const plane_camera_ref = useRef()
+  const target_quaternion = useRef(new THREE.Quaternion())
 
   const [moveRight, setMoveRight] = useState(false)
   const [moveLeft, setMoveLeft] = useState(false)
@@ -79,6 +80,13 @@ const TPCamera = ({ children }) => {
     if (moveRight || moveLeft) {
       const roll = new THREE.Quaternion().setFromAxisAngle(forward, moveRight ? (turn_speed/2) * delta : moveLeft ? -(turn_speed/2) * delta : 0)
       plane_camera_ref.current.quaternion.multiplyQuaternions(roll, plane_camera_ref.current.quaternion)
+    }
+
+    if (!moveRight && !moveLeft) {
+      const currentEuler = new THREE.Euler().setFromQuaternion(plane_camera_ref.current.quaternion)
+      const targetEuler = new THREE.Euler(0, currentEuler.y, 0)
+      target_quaternion.current.setFromEuler(targetEuler)
+      plane_camera_ref.current.quaternion.slerp(target_quaternion.current, delta)
     }
   
     plane_camera_ref.current.position.addScaledVector(forward, move_speed)
