@@ -100,7 +100,7 @@ const TPCamera = ({ children }) => {
       <PerspectiveCamera
         makeDefault
         position={[0, 40, 90]}
-        args={[50, 1.2, 1, 1000]}
+        args={[50, 1.2, 10, 1000]}
       />
       {children}
       <OrbitControls enablePan={false} />
