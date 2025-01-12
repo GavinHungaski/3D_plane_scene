@@ -24,6 +24,7 @@ function App() {
           <Trail width={100} length={1} color="red">
             <mesh position={[7, 11.5, 20]} />
           </Trail>
+
         </group>
       </TPCamera>
 

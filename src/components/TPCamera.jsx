@@ -82,12 +82,12 @@ const TPCamera = ({ children }) => {
       plane_camera_ref.current.quaternion.multiplyQuaternions(roll, plane_camera_ref.current.quaternion)
     }
 
-    if (!moveRight && !moveLeft) {
-      const currentEuler = new THREE.Euler().setFromQuaternion(plane_camera_ref.current.quaternion)
-      const targetEuler = new THREE.Euler(0, currentEuler.y, 0)
-      target_quaternion.current.setFromEuler(targetEuler)
-      plane_camera_ref.current.quaternion.slerp(target_quaternion.current, delta)
-    }
+    // if (!moveRight && !moveLeft) {
+    //   const currentEuler = new THREE.Euler().setFromQuaternion(plane_camera_ref.current.quaternion);
+    //   const targetEuler = new THREE.Euler(0, currentEuler.y, 0);
+    //   target_quaternion.current.setFromEuler(targetEuler);
+    //   plane_camera_ref.current.quaternion = plane_camera_ref.current.quaternion.lerp(target_quaternion.current, delta);
+    // }
   
     plane_camera_ref.current.position.addScaledVector(forward, move_speed)
   
