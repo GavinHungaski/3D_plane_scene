@@ -63,33 +63,33 @@ const TPCamera = ({ children }) => {
   }, [])
 
   useFrame((state, delta) => {
-    const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(plane_camera_ref.current.quaternion)
-    const right = new THREE.Vector3(1, 0, 0).applyQuaternion(plane_camera_ref.current.quaternion)
-    const up = new THREE.Vector3(0, 1, 0).applyQuaternion(plane_camera_ref.current.quaternion)
-  
+    const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(plane_camera_ref.current.quaternion);
+    const right = new THREE.Vector3(1, 0, 0).applyQuaternion(plane_camera_ref.current.quaternion);
+    const up = new THREE.Vector3(0, 1, 0).applyQuaternion(plane_camera_ref.current.quaternion);
+
     if (moveForward || moveBackward) {
-      const pitch = new THREE.Quaternion().setFromAxisAngle(right, moveForward ? turn_speed * delta : moveBackward ? -turn_speed * delta : 0)
-      plane_camera_ref.current.quaternion.multiplyQuaternions(pitch, plane_camera_ref.current.quaternion)
-    }
-  
-    if (moveRight || moveLeft) {
-      const yaw = new THREE.Quaternion().setFromAxisAngle(up, moveRight ? -turn_speed * delta : moveLeft ? turn_speed * delta : 0)
-      plane_camera_ref.current.quaternion.multiplyQuaternions(yaw, plane_camera_ref.current.quaternion)
+      const pitch = new THREE.Quaternion().setFromAxisAngle(right, moveForward ? turn_speed * delta : moveBackward ? -turn_speed * delta : 0);
+      plane_camera_ref.current.quaternion.multiplyQuaternions(pitch, plane_camera_ref.current.quaternion);
     }
 
     if (moveRight || moveLeft) {
-      const roll = new THREE.Quaternion().setFromAxisAngle(forward, moveRight ? (turn_speed/2) * delta : moveLeft ? -(turn_speed/2) * delta : 0)
-      plane_camera_ref.current.quaternion.multiplyQuaternions(roll, plane_camera_ref.current.quaternion)
+      const yaw = new THREE.Quaternion().setFromAxisAngle(up, moveRight ? -turn_speed * delta : moveLeft ? turn_speed * delta : 0);
+      plane_camera_ref.current.quaternion.multiplyQuaternions(yaw, plane_camera_ref.current.quaternion);
     }
 
-    // if (!moveRight && !moveLeft) {
-    //   const currentEuler = new THREE.Euler().setFromQuaternion(plane_camera_ref.current.quaternion);
-    //   const targetEuler = new THREE.Euler(0, currentEuler.y, 0);
-    //   target_quaternion.current.setFromEuler(targetEuler);
-    //   plane_camera_ref.current.quaternion = plane_camera_ref.current.quaternion.lerp(target_quaternion.current, delta);
-    // }
+    if (moveRight || moveLeft) {
+      const roll = new THREE.Quaternion().setFromAxisAngle(forward, moveRight ? (turn_speed/2) * delta : moveLeft ? -(turn_speed/2) * delta : 0);
+      plane_camera_ref.current.quaternion.multiplyQuaternions(roll, plane_camera_ref.current.quaternion);
+    }
+
+    if (!moveRight && !moveLeft) {
+      const currentEuler = new THREE.Euler().setFromQuaternion(plane_camera_ref.current.quaternion);
+      const targetEuler = new THREE.Euler(0, currentEuler.y, 0);
+      target_quaternion.current.setFromEuler(targetEuler);
+      plane_camera_ref.current.quaternion.copy(plane_camera_ref.current.quaternion.slerp(target_quaternion.current, delta));
+    }
   
-    plane_camera_ref.current.position.addScaledVector(forward, move_speed)
+    // plane_camera_ref.current.position.addScaledVector(forward, move_speed)
   
     state.camera.lookAt(plane_camera_ref.current.position)
     state.camera.updateProjectionMatrix()
